@@ -4,13 +4,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { PrismaService } from './prisma.service';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true, // Hace que las variables estén disponibles en toda la app sin re-importar el módulo
-    }),
+      isGlobal: true,
     AuthModule,
+    TasksModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
