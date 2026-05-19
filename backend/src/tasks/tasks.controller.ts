@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
   Req,
+  Query,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
 import { CreateTaskDto } from './dto/create-task.dto';
@@ -37,8 +38,23 @@ export class TasksController {
   }
 
   @Get()
-  findAll(@Req() req: AuthenticatedRequest) {
-    return this.tasksService.findAll(req.user.userId);
+  async findAll(
+    @Req() req: AuthenticatedRequest,
+    @Query('status') status?: string,
+    @Query('page') page?: string,
+    @Query('limit') limit?: string,
+  ) {
+    const pageNumber = page ? parseInt(page, 10) : 1;
+    const limitNumber = limit ? parseInt(limit, 10) : 10;
+
+    const response = await this.tasksService.findAll(
+      req.user.userId,
+      status,
+      isNaN(pageNumber) ? 1 : pageNumber,
+      isNaN(limitNumber) ? 10 : limitNumber,
+    );
+
+    return response;
   }
 
   @Get(':id')
