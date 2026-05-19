@@ -1,5 +1,5 @@
 import { api } from '../../../config/api';
-import type { PaginatedTasksResponse, TaskFilters } from '../types/tasks.types';
+import type { PaginatedTasksResponse, Task, TaskFilters } from '../types/tasks.types';
 
 export const tasksService = {
   // Obtener tareas con filtros de estado y paginación
@@ -15,6 +15,11 @@ export const tasksService = {
     }
 
     const response = await api.get<PaginatedTasksResponse>('/tasks', { params });
+    return response.data;
+  },
+
+  createTask: async (taskData: Omit<Task, 'id' | 'createdAt' | 'userId'>): Promise<Task> => {
+    const response = await api.post<Task>('/tasks', taskData);
     return response.data;
   },
 };
