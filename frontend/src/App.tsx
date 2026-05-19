@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LoginPage } from './features/auth/pages/LoginPage';
 import { RegisterPage } from './features/auth/pages/RegisterPage';
+import { DashboardPage } from './features/tasks/pages/DashboardPage';
 
 // Inicializamos el cliente de TanStack Query
 const queryClient = new QueryClient({
@@ -15,7 +16,7 @@ const queryClient = new QueryClient({
 });
 
 const MainAppContent: React.FC = () => {
-  const { isAuthenticated, user, logoutUser, isLoading } = useAuth();
+  const { isAuthenticated, user, isLoading } = useAuth();
   const [authView, setAuthView] = useState<'login' | 'register'>('login');
 
   if (isLoading) {
@@ -34,21 +35,7 @@ const MainAppContent: React.FC = () => {
 
   // Si el usuario está autenticado, mostramos un cascarón temporal del Dashboard
   if (isAuthenticated && user) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-slate-900 p-6">
-        <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-md text-center border border-slate-100">
-          <h1 className="text-2xl font-bold text-slate-800 mb-2">¡Sesión Iniciada con Éxito! 🔓</h1>
-          <p className="text-slate-600 mb-1 font-medium">Usuario: {user.name}</p>
-          <p className="text-slate-400 text-sm mb-6">Email: {user.email}</p>
-          <button
-            onClick={logoutUser}
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-xl transition-colors duration-200"
-          >
-            Cerrar Sesión (Logout)
-          </button>
-        </div>
-      </div>
-    );
+    return <DashboardPage />;
   }
 
   // Vista de Autenticación si no está logueado
