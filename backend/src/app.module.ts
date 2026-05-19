@@ -10,6 +10,7 @@ import { TasksModule } from './tasks/tasks.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+    }),
     AuthModule,
     TasksModule,
   ],
