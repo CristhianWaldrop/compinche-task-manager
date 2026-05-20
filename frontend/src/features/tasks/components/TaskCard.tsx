@@ -25,7 +25,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task }) => {
           <span className={`px-2 py-0.5 text-[11px] font-bold rounded-full uppercase tracking-wider ${
             isDone ? 'bg-green-50 text-green-700 border border-green-200' : 'bg-amber-50 text-amber-700 border border-amber-200'
           }`}>
-            {isDone ? 'Hecho' : 'Pendiente'}
+            {isDone ? 'Completada' : 'Pendiente'}
           </span>
         </div>
         <p className={`text-sm text-slate-600 line-clamp-2 ${isDone ? 'text-slate-400' : ''}`}>
