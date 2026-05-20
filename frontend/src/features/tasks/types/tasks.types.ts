@@ -18,6 +18,7 @@ export interface PaginatedTasksResponse {
     page: number;
     limit: number;
     totalPages: number;
+    currentPage: number;
   };
 }
 

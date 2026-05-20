@@ -22,4 +22,14 @@ export const tasksService = {
     const response = await api.post<Task>('/tasks', taskData);
     return response.data;
   },
+
+  updateTask: async ({ id, ...data }: Partial<Task> & { id: string }): Promise<Task> => {
+    const response = await api.patch<Task>(`/tasks/${id}`, data);
+    return response.data;
+  },
+
+  deleteTask: async (id: string): Promise<{ message: string }> => {
+    const response = await api.delete<{ message: string }>(`/tasks/${id}`);
+    return response.data;
+  },
 };

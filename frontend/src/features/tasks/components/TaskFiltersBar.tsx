@@ -4,9 +4,14 @@ import type { TaskFilters } from '../types/tasks.types';
 interface TaskFiltersBarProps {
   filters: TaskFilters;
   onFilterChange: (newStatus: 'all' | 'pending' | 'done') => void;
+  onCreateClick: () => void;
 }
 
-export const TaskFiltersBar: React.FC<TaskFiltersBarProps> = ({ filters, onFilterChange }) => {
+export const TaskFiltersBar: React.FC<TaskFiltersBarProps> = ({
+  filters,
+  onFilterChange,
+  onCreateClick,
+}) => {
   return (
     <div className="flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-100 shadow-xs">
       <div className="flex items-center gap-2">
@@ -29,7 +34,11 @@ export const TaskFiltersBar: React.FC<TaskFiltersBarProps> = ({ filters, onFilte
       </div>
       
       {/* Botón de acción rápida que usaremos más adelante para abrir el modal de creación */}
-      <button className="bg-brand-600 hover:bg-brand-700 text-white font-medium text-sm py-2 px-4 rounded-xl transition-all shadow-md shadow-blue-500/10 flex items-center gap-2">
+      <button
+        type="button"
+        onClick={onCreateClick} // <--- ¡AQUÍ ES DONDE DEBE VIVIR EL CLICK!
+        className="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-semibold text-sm py-2 px-4 rounded-xl transition-all shadow-md shadow-blue-500/10 flex items-center justify-center gap-2 cursor-pointer"
+      >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
         </svg>
