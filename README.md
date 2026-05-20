@@ -97,13 +97,13 @@ npm install
 
 ```
 
+2. Configuración de la Base de Datos (Migraciones)
 
-2. Genera el cliente de Prisma para que el proyecto reconozca el esquema de tu base de datos:
 ```bash
-npx prisma generate
+# Aplica las migraciones a tu base de datos
+npx prisma migrate dev
 
 ```
-
 
 3. Levanta el servidor de desarrollo:
 ```bash
