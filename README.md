@@ -61,7 +61,6 @@ Crea un archivo `.env` dentro del directorio `backend/` basándote en el archivo
 ```env
 PORT=3000
 DATABASE_URL="postgresql://postgres.[id-supabase]:[password]@aws-1-us-east-1.pooler.supabase.com:5432/postgres"
-JWT_SECRET="una_clave_secreta_super_segura_para_el_token_jwt_2026"
 JWT_EXPIRES_IN="24h"
 
 ```
