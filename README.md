@@ -99,9 +99,9 @@ npm install
 ```
 
 
-2. Ejecuta las migraciones de Prisma para asegurarte de sincronizar el esquema de la base de datos de Supabase:
+2. Genera el cliente de Prisma para que el proyecto reconozca el esquema de tu base de datos:
 ```bash
-npx prisma db push
+npx prisma generate
 
 ```
 
