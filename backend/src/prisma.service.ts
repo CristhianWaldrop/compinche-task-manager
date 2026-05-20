@@ -10,7 +10,6 @@ export class PrismaService
 {
   constructor() {
     super({
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
       adapter: new PrismaPg({
         connectionString: process.env.DATABASE_URL,
       }),
