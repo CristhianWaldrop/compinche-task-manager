@@ -143,6 +143,7 @@ export const DashboardPage: React.FC = () => {
 
       {/* Modal 1: Creación */}
       <CreateTaskModal
+        key={isCreateOpen ? 'open' : 'closed'}
         isOpen={isCreateOpen}
         onClose={() => { setIsCreateOpen(false); setCreateError(null); }}
         onSubmit={(taskData) => createMutation.mutate(taskData)}
@@ -151,14 +152,18 @@ export const DashboardPage: React.FC = () => {
       />
 
       {/* Modal 2: Detalle (Vista / Edición / Mutaciones Integradas) */}
-      <TaskDetailModal
-        task={selectedTask}
-        isOpen={!!selectedTask}
-        onClose={() => setSelectedTask(null)}
-        onUpdate={(taskData) => updateMutation.mutate(taskData)}
-        onDelete={(id) => deleteMutation.mutate(id)}
-        isPending={updateMutation.isPending || deleteMutation.isPending}
-      />
+      {
+        selectedTask && (
+          <TaskDetailModal
+            key={selectedTask?.id ?? 'no-task'}
+            task={selectedTask}
+            isOpen={!!selectedTask}
+            onClose={() => setSelectedTask(null)}
+            onUpdate={(taskData) => updateMutation.mutate(taskData)}
+            onDelete={(id) => deleteMutation.mutate(id)}
+            isPending={updateMutation.isPending || deleteMutation.isPending}
+          />
+        )}
     </div>
   );
 };

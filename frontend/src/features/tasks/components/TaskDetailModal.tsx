@@ -1,10 +1,9 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import type { Task } from '../types/tasks.types';
 import { ConfirmationModal } from '../../../shared/components/ConfirmationModal';
 
 interface TaskDetailModalProps {
-  task: Task | null;
+  task: Task;
   isOpen: boolean;
   onClose: () => void;
   onUpdate: (data: Partial<Task> & { id: string }) => void;
@@ -14,35 +13,20 @@ interface TaskDetailModalProps {
 
 export const TaskDetailModal: React.FC<TaskDetailModalProps> = ({
   task,
-  isOpen,
   onClose,
   onUpdate,
   onDelete,
   isPending,
 }) => {
-  if (!isOpen || !task) return null;
-
   // Estado para alternar entre Modo Vista ('view') y Modo Edición ('edit')
   const [mode, setMode] = useState<'view' | 'edit'>('view');
 
   // Estados locales para los campos de edición
   const [title, setTitle] = useState(task.title);
   const [description, setDescription] = useState(task.description);
-  const [dueDate, setDueDate] = useState('');
+  const [dueDate, setDueDate] = useState(task.dueDate.split('T')[0].split('Z')[0]);
 
   const [isDeleteConfirmOpen, setIsDeleteConfirmOpen] = useState(false);
-
-  // Sincronizar los estados cuando el modal se abre con una tarea específica
-  useEffect(() => {
-    if (task) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setTitle(task.title);
-      setDescription(task.description);
-      // Recortar el formato ISO (YYYY-MM-DDThh:mm...) a YYYY-MM-DD para el input de tipo date
-      setDueDate(task.dueDate.split('T')[0]);
-      setMode('view'); // Siempre abrir en modo vista
-    }
-  }, [task, isOpen]);
 
   const handleSaveChanges = (e: React.FormEvent) => {
     e.preventDefault();

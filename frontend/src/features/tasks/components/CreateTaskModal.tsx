@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface CreateTaskModalProps {
   isOpen: boolean;
@@ -19,16 +19,6 @@ export const CreateTaskModal: React.FC<CreateTaskModalProps> = ({
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState('');
   const [validationError, setValidationError] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!isOpen) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setTitle('');
-      setDescription('');
-      setDueDate('');
-      setValidationError(null);
-    }
-  }, [isOpen]);
   
   if (!isOpen) return null;
 
