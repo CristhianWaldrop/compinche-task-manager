@@ -6,9 +6,9 @@ import { TaskFiltersBar } from '../components/TaskFiltersBar';
 import { TaskCard } from '../components/TaskCard';
 import { CreateTaskModal } from '../components/CreateTaskModal';
 import { TaskDetailModal } from '../components/TaskDetailModal'; // <-- Importamos el nuevo modal
-import { useAuth } from '../../../context/AuthContext';
 import axios from 'axios';
 import type { ApiError } from '../../auth/types/auth.types';
+import { useAuth } from '../../../context/useAuth';
 
 export const DashboardPage: React.FC = () => {
   const { user, logoutUser } = useAuth();

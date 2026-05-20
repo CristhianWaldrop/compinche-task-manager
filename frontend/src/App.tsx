@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider } from './context/AuthProvider';
 import { LoginPage } from './features/auth/pages/LoginPage';
 import { RegisterPage } from './features/auth/pages/RegisterPage';
 import { DashboardPage } from './features/tasks/pages/DashboardPage';
+import { useAuth } from './context/useAuth';
 
 // Inicializamos el cliente de TanStack Query
 const queryClient = new QueryClient({
